@@ -8,14 +8,81 @@ servers:
     description: Servidor local de desarrollo
 
 paths:
-  /api/restaurant/product:
+  /api/restaurant/pedidos:
    get:
+      summary: Obtener datos de los pedidos
+      responses:
+        "200":
+          description: Lista de los datos de los pedidos
+          content:
+            application/json:
+             schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_pedidos:
+                    type: integer
+                    description: id del pedido
+                  mesa_id:
+                    type: integer
+                    description: id de la mesa en la tabla pedido
+                  bebida:
+                    type: object
+                    description: informacion del pedido de las bebidas
+                  comida:
+                    type: object
+                    description: informacion del pedido de la comida
+                  inicio:
+                    type: timestamp
+                    description: inicio del tiempo que se tardo el pedido
+                  fin:
+                    type: timestamp
+                    description: fin del tiempo que se tardo el pedido
+                  genero:
+                    type: string
+                    description: informacion del cliente si es mujer o hombre
+                  camarero_id:
+                    type: integer
+                    description: id del camarero
+                  total_pedido:
+                    type: integer
+                    description: monto total del pedido
+                    
+
+        "500":
+          description: Error en el servidor product
+  /api/restaurant/categoria:
+    get:
+      summary: Obtener datos de la categoria de comida y bebida
+      responses:
+        "200":
+          description: Lista de los datos de la tabla categoria
+          content:
+            application/json:
+             schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_categoria:
+                    type: integer
+                    description: id o categoria de comida y bebida
+                  nombre_categoria:
+                    type: string
+                    description: nombre de la categoria 600
+                  
+
+        "500":
+          description: Error en el servidor product
+  /api/restaurant/product:
+    get:
       summary: Obtener datos de las mesas
       responses:
         "200":
           description: Lista de los datos de la mesa
           content:
-            aplication/json:
+            application/json:
              schema:
               type: array
               items:
@@ -38,35 +105,35 @@ paths:
           description: Error en el servidor product
  
   /api/restaurant/waiter:
-    get:
+      get:
         summary: Obtener datos de los camareros
         responses:
           "200":
             description: Lista de los datos de los camareros
             content:
-              aplication/json:
-              schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      description: id del camarero
-                    name:
-                      type: string
-                      description: nombre del camarero
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: id del camarero
+                      name:
+                       type: string
+                       description: nombre del camarero
           "500":
             description: Error en el servidor camarero
             
   /api/restaurant/mesa:
-    get:
+     get:
       summary: Obtener datos de las mesas
       responses:
         "200":
           description: Lista de los datos de la mesa
           content:
-            aplication/json:
+            application/json:
              schema:
               type: array
               items:
